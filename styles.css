@@ -1,0 +1,315 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f8f5;
+  --ink: #1f2933;
+  --muted: #68737d;
+  --line: #d8ded6;
+  --primary: #17683a;
+  --primary-dark: #0f4f2a;
+  --accent: #b45309;
+  --danger: #b91c1c;
+  --surface: #ffffff;
+  --focus: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+main {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 14px 14px 32px;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: max(12px, env(safe-area-inset-top)) 16px 12px;
+  color: #fff;
+  background: var(--primary-dark);
+  box-shadow: 0 2px 12px rgb(15 79 42 / 18%);
+}
+
+.eyebrow {
+  margin: 0 0 2px;
+  font-size: 0.78rem;
+  opacity: 0.86;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: 0;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  color: #fff;
+  background: rgb(255 255 255 / 18%);
+  font-size: 1.4rem;
+}
+
+.search-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px 0;
+}
+
+.search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+#searchInput {
+  width: 100%;
+  min-height: 52px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: #fff;
+  font-size: 1.05rem;
+}
+
+#searchInput:focus,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 420px) {
+  .action-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.primary-button,
+.secondary-button,
+.small-button,
+.danger-button {
+  min-height: 48px;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-weight: 700;
+}
+
+.primary-button {
+  color: #fff;
+  background: var(--primary);
+}
+
+.secondary-button {
+  color: var(--primary-dark);
+  background: #dcefe4;
+}
+
+.small-button {
+  color: var(--ink);
+  background: #e9ede6;
+}
+
+.danger-button {
+  width: 100%;
+  color: #fff;
+  background: var(--danger);
+}
+
+.status-text {
+  min-height: 24px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.camera-panel {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #111827;
+}
+
+#cameraPreview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #000;
+}
+
+.scan-frame {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 33%;
+  height: 28%;
+  border: 3px solid #fbbf24;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.summary-band {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.summary-band div {
+  padding: 12px;
+  background: var(--surface);
+}
+
+.summary-band span {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.summary-band small {
+  color: var(--muted);
+}
+
+.results {
+  display: grid;
+  gap: 10px;
+  padding-top: 14px;
+}
+
+.result-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 1px 6px rgb(31 41 51 / 7%);
+}
+
+.shelf-block {
+  padding: 14px;
+  color: #fff;
+  background: var(--accent);
+}
+
+.shelf-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.92;
+}
+
+.shelf-no {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: clamp(2.4rem, 14vw, 4.8rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.product-block {
+  padding: 14px;
+}
+
+.product-name {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+  letter-spacing: 0;
+}
+
+dl {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 8px;
+}
+
+dt {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.empty-message {
+  margin: 16px 0 0;
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--muted);
+  background: #fff;
+}
+
+.log-panel {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.log-panel summary {
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+#logList {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+@media (min-width: 720px) {
+  .result-card {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+  }
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商品名カナ補完</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .tool-panel {
+      display: grid;
+      gap: 14px;
+      padding: 16px 0;
+    }
+
+    .file-box {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 2px dashed var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .file-box input {
+      width: 100%;
+    }
+
+    .preview-table {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      font-size: 0.88rem;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef4ea;
+    }
+
+    .note-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">CSVメンテナンス</p>
+      <h1>商品名カナ補完</h1>
+    </div>
+    <a class="secondary-button" href="index.html">検索へ</a>
+  </header>
+
+  <main>
+    <section class="tool-panel">
+      <div class="file-box">
+        <label for="csvFile">products.csv を選択</label>
+        <input id="csvFile" type="file" accept=".csv,text/csv">
+        <button id="downloadButton" class="primary-button" type="button" disabled>Excel用 products.csv をダウンロード</button>
+      </div>
+
+      <p id="statusText" class="status-text">CSVを選択してください。</p>
+
+      <ul class="note-list">
+        <li>product_kana が空欄の行だけ補完します。</li>
+        <li>漢字の読みは完全自動化が難しいため、医薬品名で多い剤形語とカタカナ名を中心に補完します。</li>
+        <li>Excel 2007で文字化けしにくいUTF-16形式で出力します。</li>
+        <li>ダウンロード後、Excelで開いて数行だけ目視確認してください。</li>
+      </ul>
+    </section>
+
+    <section class="summary-band" aria-label="補完状況">
+      <div>
+        <span id="rowCount">0</span>
+        <small>データ行</small>
+      </div>
+      <div>
+        <span id="updatedCount">0</span>
+        <small>補完行</small>
+      </div>
+    </section>
+
+    <section class="preview-table" aria-label="プレビュー">
+      <table>
+        <thead>
+          <tr>
+            <th>商品コード</th>
+            <th>商品名</th>
+            <th>補完後 product_kana</th>
+            <th>棚番号</th>
+          </tr>
+        </thead>
+        <tbody id="previewBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="kana-tool.js"></script>
+</body>
+</html>
